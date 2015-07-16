@@ -1,2 +1,11 @@
-%h1 Peluquerias#show
-%p Find me in app/views/peluquerias/show.html.haml
+%p
+  = @peluqueria.name 
+%p
+  = @peluqueria.website 
+%p Telefono: #{ @peluqueria.phone }
+%p Descripcion: #{ @peluqueria.description }
+%p Aceptan tarjetas de credito? : #{ @peluqueria.accepts_credit_cards ? 'Yes' : 'No' }
+%p Parking? : #{ @peluqueria.parking ? 'Yes' : 'No' }
+
+
+

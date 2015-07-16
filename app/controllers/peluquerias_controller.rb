@@ -1,4 +1,5 @@
 class PeluqueriasController < ApplicationController
+  before_action :set_peluqueria, only:[:show]
   def index
   end
 
@@ -23,12 +24,16 @@ class PeluqueriasController < ApplicationController
   end
 
   def show
+
   end
 
   private
 
   def peluqueria_params
-    params.require(:shop).permit(:name, :phone, :description, :website, :accepts_credit_cards, :parking)  
+    params.require(:peluqueria).permit(:name, :phone, :description, :website, :accepts_credit_cards, :parking)  
+  end
+  def set_peluqueria 
+    @peluqueria = Peluqueria.find(params[:id])
   end
 
 end
