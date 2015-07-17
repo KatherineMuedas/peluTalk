@@ -9,6 +9,7 @@ class PeluqueriasController < ApplicationController
 
   def create
     @peluqueria = Peluqueria.new(peluqueria_params)
+    @picture = @peluqueria.picture
     if @peluqueria.save
       redirect_to @peluqueria
       flash[:notice] = "La peluqueria fue creada exitosamente." 
@@ -30,7 +31,8 @@ class PeluqueriasController < ApplicationController
   private
 
   def peluqueria_params
-    params.require(:peluqueria).permit(:name, :phone, :description, :website, :accepts_credit_cards, :parking)  
+    pictures_attributes = [:id, :caption, :photo]
+    params.require(:peluqueria).permit(:name, :phone, :description, :website, :accepts_credit_cards, :parking, pictures_attributes: pictures_attributes)  
   end
   def set_peluqueria 
     @peluqueria = Peluqueria.find(params[:id])
