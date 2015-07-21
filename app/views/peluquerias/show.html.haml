@@ -6,7 +6,23 @@
 %p Descripcion: #{ @peluqueria.description }
 %p Aceptan tarjetas de credito? : #{ @peluqueria.accepts_credit_cards ? 'Yes' : 'No' }
 %p Parking? : #{ @peluqueria.parking ? 'Yes' : 'No' }
-= render "photo_upload" 
+
+/ Button trigger modal
+%button.btn.btn-primary.btn-lg{"data-target" => "#myModal", "data-toggle" => "modal", :type => "button"}
+  Add a photo
+/ Modal
+#myModal.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} &times;
+        %h4#myModalLabel.modal-title New Photo
+      .modal-body
+        = render 'photo_upload'
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+        %button.btn.btn-primary{:type => "button"} Save changes
 
 
 
