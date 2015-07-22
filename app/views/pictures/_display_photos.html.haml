@@ -1,0 +1,4 @@
+- @pictures.first(4).each do |picture|
+  %li= link_to image_tag(picture.photo.url(:medium), class: "th radius"), picture.photo.url(:large)
+- unless @pictures[5].nil?
+  = link_to 'View all photos...', '#', class: 'right'

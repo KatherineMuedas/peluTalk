@@ -1,8 +1,13 @@
 = simple_form_for @peluqueria do  |f|
-  = f.fields_for :pictures, @peluqueria.pictures.build do |picture|
-    .nested-fields
-      = picture.input :caption
-      = picture.input :photo
-      / = picture.input :user_id, input_html: {value: current_user.id}, as: :hidden
-      / = tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token)
+  .modal-body
+    = f.fields_for :pictures, @peluqueria.pictures.build do |picture|
+      .nested-fields
+        = picture.input :caption
+        = picture.input :photo
+        = picture.input :user_id, input_html: {value: current_user.id}, as: :hidden
+  .modal-footer
+    %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+    = f.submit 'Save', :class => 'button btn btn-primary'
+    
+          
  
