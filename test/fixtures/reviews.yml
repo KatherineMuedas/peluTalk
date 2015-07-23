@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tittle: MyString
+  body: MyString
+  pelu_rating: 1
+  peluqueria_id: 
+  user_id: 
+
+two:
+  tittle: MyString
+  body: MyString
+  pelu_rating: 1
+  peluqueria_id: 
+  user_id: 

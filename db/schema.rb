@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150721213558) do
+ActiveRecord::Schema.define(version: 20150723230830) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,19 @@ ActiveRecord::Schema.define(version: 20150721213558) do
   add_index "pictures", ["picable_type", "picable_id"], name: "index_pictures_on_picable_type_and_picable_id", using: :btree
   add_index "pictures", ["user_id"], name: "index_pictures_on_user_id", using: :btree
 
+  create_table "reviews", force: :cascade do |t|
+    t.string   "tittle"
+    t.string   "body"
+    t.integer  "pelu_rating"
+    t.integer  "peluqueria_id"
+    t.integer  "user_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "reviews", ["peluqueria_id"], name: "index_reviews_on_peluqueria_id", using: :btree
+  add_index "reviews", ["user_id"], name: "index_reviews_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -62,4 +75,6 @@ ActiveRecord::Schema.define(version: 20150721213558) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "reviews", "peluquerias"
+  add_foreign_key "reviews", "users"
 end
