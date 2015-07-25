@@ -5,6 +5,12 @@
     = f.input :tittle, label: false, placeholder: "Titulo", input_html: { rows: 1 }
     %br/
     = f.input :body, label: false, placeholder: "Ingresa tu review aqui", input_html: { rows: 4 }
+    = f.fields_for :picture, @review.build_picture do |picture|
+      .nested-fields
+        = picture.input :photo
+        = picture.input :caption, label: "Nombre de la foto"
+        / = picture.input :user_id, input_html: {value: current_user.id}, as: :hidden
+    -# = f.input :user_id, input_html: {value: current_user.id}, as: :hidden
   .modal-footer
     %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Volver
     = f.submit 'Publicar', :class => 'button btn btn-primary'

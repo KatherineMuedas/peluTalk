@@ -4,10 +4,13 @@ class ReviewsController < ApplicationController
   
   def create
     @review = @peluqueria.reviews.new(reviews_params)
+    @review.user = current_user
+    @review.picture.user_id = current_user.id if @review.picture
+    # @review.user_id = current_user.id
     if @review.save
-      redirect_to :back
+      redirect_to @peluqueria
     else 
-      redirect_to :back, notice: "Tu review no se ha guardado. Intenta otra vez" 
+      redirect_to @peluqueria, notice: "Tu review no se ha guardado. Intenta otra vez" 
     end
   end
 
@@ -25,7 +28,7 @@ class ReviewsController < ApplicationController
 
   def reviews_params
     picture_attributes = [:id, :caption, :photo, :user_id]
-    params.require(:review).permit(:title, :body, :pelu_rating, picture_attributes: picture_attributes)
+    params.require(:review).permit(:title, :body, :pelu_rating, :user_id, picture_attributes: picture_attributes)
   end
   def find_peluqueria
     @peluqueria = Peluqueria.find(params[:peluqueria_id])
