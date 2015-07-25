@@ -8,19 +8,36 @@
 %p Parking? : #{ @peluqueria.parking ? 'Yes' : 'No' }
 - if current_user
   / Button trigger modal
-  %button.btn.btn-primary.btn-lg{"data-target" => "#myModal", "data-toggle" => "modal", :type => "button"}
-    Add a photo
+  %button.btn.btn-primary.btn-lg{"data-target" => "#photo-Modal", "data-toggle" => "modal", :type => "button"}
+    Agrega una foto
   / Modal
-  #myModal.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  #photo-Modal.modal.fade{:tabindex => "-1"}
     .modal-dialog{:role => "document"}
       .modal-content
         .modal-header
-          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %button.close{"data-dismiss" => "modal", :type => "button"}
             %span{"aria-hidden" => "true"} &times;
-          %h4#myModalLabel.modal-title New Photo
+          %h4.modal-title Nueva foto
         = render 'photo_upload'
+
+
+  / Button trigger modal
+  %button.btn.btn-primary.btn-lg{"data-target" => "#review-modal", "data-toggle" => "modal", :type => "button"}
+    Agrega a review
+  / Modal
+  #review-modal.modal.fade{:tabindex => "-1"}
+    .modal-dialog{:role => "document"}
+      .modal-content
+        .modal-header
+          %button.close{"data-dismiss" => "modal", :type => "button"}
+            %span{"aria-hidden" => "true"} &times;
+          %h4.modal-title Nuevo review
+        = render 'reviews/review_form'
+
         
 = render 'pictures/display_photos'
+
+
 
 
 

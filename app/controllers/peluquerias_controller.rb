@@ -33,6 +33,7 @@ class PeluqueriasController < ApplicationController
 
   def show
     @pictures = @peluqueria.pictures.all.order(created_at: :desc)
+    @review = @peluqueria.reviews.new
   end
 
 
