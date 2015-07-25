@@ -1,4 +1,4 @@
-= simple_form_for @peluqueria do  |f|
+= simple_form_for @peluqueria , url: create_peluqueria_photo_path do  |f|
   .modal-body
     = f.fields_for :pictures, @peluqueria.pictures.build do |picture|
       .nested-fields

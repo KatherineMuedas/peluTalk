@@ -1,6 +1,6 @@
 class PeluqueriasController < ApplicationController
-  # before_action :authenticate_user!, only:[:new, :create, :edit, :update]
-  before_action :set_peluqueria, only:[:show, :edit, :update]
+  before_action :authenticate_user!, only:[:new, :create, :edit, :update, :create_photo]
+  before_action :set_peluqueria, only:[:show, :edit, :update, :create_photo]
   def index
   end
 
@@ -10,13 +10,21 @@ class PeluqueriasController < ApplicationController
 
   def create
     @peluqueria = Peluqueria.new(peluqueria_params)
-    # @picture = @peluqueria.picture
-    # @picture.user = current_user
+    @picture.user_id = current_user.id 
+    
     if @peluqueria.save
       redirect_to @peluqueria
       flash[:notice] = "La peluqueria fue creada exitosamente." 
     else
       render 'new'
+    end
+  end
+
+  def create_photo
+    if @peluqueria.update_attributes(pictures_params)
+      redirect_to @peluqueria
+    else
+      redirect_to @peluqueria, notice: "Tu foto no se ha guardado. Intenta otra vez" 
     end
   end
 
@@ -40,8 +48,12 @@ class PeluqueriasController < ApplicationController
   private
 
   def peluqueria_params
-    pictures_attributes = [:id, :caption, :photo, :user_id]
+    pictures_attributes = [:id, :caption, :photo, :user_id, :peluqueria_id]
     params.require(:peluqueria).permit(:name, :phone, :description, :website, :accepts_credit_cards, :parking, pictures_attributes: pictures_attributes)  
+  end
+  def pictures_params
+    pictures_attributes = [:id, :caption, :photo, :user_id, :peluqueria_id]
+    params.require(:peluqueria).permit(pictures_attributes: pictures_attributes)  
   end
   def set_peluqueria 
     @peluqueria = Peluqueria.find(params[:id])
