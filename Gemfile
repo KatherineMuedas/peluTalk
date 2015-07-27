@@ -8,6 +8,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem "paperclip", "~> 4.3"
+gem 'font-awesome-rails'
 
 group :development, :test do
   gem 'byebug'

@@ -2,7 +2,7 @@
   .modal-body
     = f.input :pelu_rating, label: false, collection: 1..5, prompt: "Selecciona un rating"
     %br/
-    = f.input :tittle, label: false, placeholder: "Titulo", input_html: { rows: 1 }
+    = f.input :title, label: false, placeholder: "Titulo", input_html: { rows: 1 }
     %br/
     = f.input :body, label: false, placeholder: "Ingresa tu review aqui", input_html: { rows: 4 }
     = f.fields_for :picture, @review.build_picture do |picture|

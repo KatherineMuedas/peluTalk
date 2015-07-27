@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20150723230830) do
   add_index "pictures", ["user_id"], name: "index_pictures_on_user_id", using: :btree
 
   create_table "reviews", force: :cascade do |t|
-    t.string   "tittle"
+    t.string   "title"
     t.string   "body"
     t.integer  "pelu_rating"
     t.integer  "peluqueria_id"

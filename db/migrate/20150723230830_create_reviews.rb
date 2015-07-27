@@ -1,7 +1,7 @@
 class CreateReviews < ActiveRecord::Migration
   def change
     create_table :reviews do |t|
-      t.string :tittle
+      t.string :title
       t.string :body
       t.integer :pelu_rating
       t.belongs_to :peluqueria, index: true

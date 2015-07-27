@@ -42,6 +42,7 @@ class PeluqueriasController < ApplicationController
   def show
     @pictures = @peluqueria.pictures.all.order(created_at: :desc)
     @review = @peluqueria.reviews.new
+    @reviews = @peluqueria.reviews.all.order(created_at: :desc)
   end
 
 
